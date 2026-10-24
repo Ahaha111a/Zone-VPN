@@ -1,0 +1,18 @@
+[Unit]
+Description=Zona VPN Telegram Bot
+After=network-online.target
+Wants=network-online.target
+[Service]
+Type=simple
+User=zona-vpn
+WorkingDirectory=/opt/zona-vpn
+EnvironmentFile=/etc/zona-vpn/zona-vpn.env
+ExecStart=/opt/zona-vpn/.venv/bin/python -m app
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/zona-vpn
+[Install]
+WantedBy=multi-user.target
